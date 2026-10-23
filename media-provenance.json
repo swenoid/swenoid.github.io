@@ -1,0 +1,24 @@
+{
+  "sourceRepository": "https://github.com/martinorrje/martinorrje.github.io",
+  "sourceCommit": "0e944eeda105a4b0809e73e2c15ac164e69bcc7d",
+  "sourcePage": "humanoid-project.html",
+  "originalVideos": [
+    "amass_adult.mov",
+    "amass_kid.mov",
+    "draw_circle.mov",
+    "humanoid_dance.mp4",
+    "humanoid_walk.mp4",
+    "humanoid_walk_side.mp4",
+    "imitation.mp4",
+    "locomotion.mp4",
+    "pushups.mov",
+    "walk.mov",
+    "wave.mov",
+    "wave_isaacgym.mov",
+    "wave_mujoco.mov",
+    "wave_real.mov"
+  ],
+  "manuscript": "Author-supplied Swenoid: An Open-Source and Customizable Humanoid Robot",
+  "portraitSource": "humanoid-paper.pdf, image xref 111 (existing project imagery)",
+  "sourceUnmodified": true
+}

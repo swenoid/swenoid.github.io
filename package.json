@@ -1,0 +1,11 @@
+{
+  "name": "swenoid-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Research website for the Swenoid humanoid robot",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node --check app.js && node --check scripts/serve.mjs && python3 scripts/check-site.py"
+  }
+}
