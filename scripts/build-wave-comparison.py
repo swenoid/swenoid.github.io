@@ -16,6 +16,7 @@ STAGES = [
     ('wave-hardware', 'Real robot'),
 ]
 DURATION, FPS = 3.6, 50
+PANEL_HEIGHT, GAP, CONTROL_SPACE = 528, 24, 48
 
 def run(args):
     subprocess.run(args, check=True, cwd=ROOT)
@@ -27,10 +28,10 @@ def prepare(entry):
         'ffprobe', '-v', 'error', '-select_streams', 'v:0',
         '-show_entries', 'stream=duration,r_frame_rate', '-of', 'json', str(source)]))
     source_duration = float(probe['streams'][0]['duration'])
+    width = round(MEDIA[key]['width'] * PANEL_HEIGHT / MEDIA[key]['height'] / 2) * 2
     filters = (
         f'[0:v]setpts=(PTS-STARTPTS)*{DURATION/source_duration:.10f},fps={FPS},'
-        'scale=384:528:force_original_aspect_ratio=decrease,'
-        'pad=384:528:(ow-iw)/2:(oh-ih)/2:color=0xf6f5f0,setsar=1,'
+        f'scale={width}:{PANEL_HEIGHT},setsar=1,'
         f'tpad=stop_mode=clone:stop_duration=0.1,trim=duration={DURATION}[out]'
     )
     run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-i', str(source),
@@ -39,18 +40,30 @@ def prepare(entry):
          '-threads', '2', '-pix_fmt', 'yuv420p', str(WORK/f'{key}.mp4')])
     return {'id': key, 'title': title, 'source': MEDIA[key]['src'],
             'sourceDuration': source_duration, 'comparisonDuration': DURATION,
-            'playbackRate': source_duration/DURATION}
+            'playbackRate': source_duration/DURATION, 'width': width, 'height': PANEL_HEIGHT}
 
 with ThreadPoolExecutor(max_workers=3) as pool:
     stages = list(pool.map(prepare, STAGES))
 
-for layout, positions in [('desktop', '0_0|384_0|768_0|1152_0|1536_0'),
-                          ('mobile', '0_0|384_0|768_0|192_528|576_528')]:
+layouts = {}
+for layout in ['desktop', 'mobile']:
+    rows = [stages] if layout == 'desktop' else [stages[:3], stages[3:]]
+    row_widths = [sum(stage['width'] for stage in row) + GAP * (len(row)-1) for row in rows]
+    canvas_width = max(row_widths)
+    panels = []
+    for row_index, (row, row_width) in enumerate(zip(rows, row_widths)):
+        x = (canvas_width - row_width) // 2
+        y = row_index * (PANEL_HEIGHT + GAP)
+        for stage in row:
+            panels.append({'id': stage['id'], 'x': x, 'y': y, 'width': stage['width'], 'height': PANEL_HEIGHT})
+            x += stage['width'] + GAP
+    positions = '|'.join(f"{panel['x']}_{panel['y']}" for panel in panels)
+    layouts[layout] = {'width': canvas_width, 'height': len(rows) * PANEL_HEIGHT + (len(rows)-1) * GAP + CONTROL_SPACE, 'gap': GAP, 'panels': panels}
     args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y']
     for key, _ in STAGES:
         args += ['-i', str(WORK/f'{key}.mp4')]
     output = ROOT/f'assets/videos/wave-comparison-{layout}.mp4'
-    args += ['-filter_complex', f'[0:v][1:v][2:v][3:v][4:v]xstack=inputs=5:layout={positions}:fill=0xf6f5f0:shortest=1,pad=iw:ih+48:0:0:color=0xf6f5f0[out]',
+    args += ['-filter_complex', f'[0:v][1:v][2:v][3:v][4:v]xstack=inputs=5:layout={positions}:fill=0xf6f5f0:shortest=1,pad=iw:ih+{CONTROL_SPACE}:0:0:color=0xf6f5f0[out]',
              '-map', '[out]', '-an', '-t', str(DURATION), '-c:v', 'libx264', '-crf', '20',
              '-preset', 'medium', '-threads', '4', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(output)]
     run(args)
@@ -60,7 +73,7 @@ for layout, positions in [('desktop', '0_0|384_0|768_0|1152_0|1536_0'),
     run(['magick', str(still), '-quality', '85', str(ROOT/f'assets/posters/wave-comparison-{layout}.webp')])
 
 (ROOT/'wave-comparison.json').write_text(json.dumps({
-    'duration': DURATION, 'fps': FPS, 'stages': stages,
+    'duration': DURATION, 'fps': FPS, 'stages': stages, 'layouts': layouts,
     'alignment': 'All five recordings start together and are uniformly retimed to the same 3.6-second wave cycle. No frames are reordered; motion differences are retained.',
     'desktop': 'assets/videos/wave-comparison-desktop.mp4',
     'mobile': 'assets/videos/wave-comparison-mobile.mp4',

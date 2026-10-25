@@ -27,7 +27,8 @@ recording is uniformly retimed to the shared 3.6-second cycle. The source
 recordings are preserved in `assets/videos`; playback rates and source durations
 are documented in `wave-comparison.json`.
 
-Desktop uses five columns; phones use a three-plus-two layout. Switching layouts
+All five panels have the same height with 24-pixel gaps, preserving each clip’s
+aspect ratio. Desktop uses one row; phones use a three-plus-two layout. Switching layouts
 preserves the playback position and pause state. Native inline players show the
 complete frame, organized under Motion tracking, Locomotion, and Drawing.
 Each group has one heading; individual players have no visible labels or descriptions. Videos request

@@ -8,7 +8,9 @@
       "source": "assets/videos/amass-reference.mp4",
       "sourceDuration": 3.62,
       "comparisonDuration": 3.6,
-      "playbackRate": 1.0055555555555555
+      "playbackRate": 1.0055555555555555,
+      "width": 316,
+      "height": 528
     },
     {
       "id": "amass-shaped",
@@ -16,7 +18,9 @@
       "source": "assets/videos/amass-shaped.mp4",
       "sourceDuration": 3.77,
       "comparisonDuration": 3.6,
-      "playbackRate": 1.0472222222222223
+      "playbackRate": 1.0472222222222223,
+      "width": 412,
+      "height": 528
     },
     {
       "id": "wave-ik",
@@ -24,7 +28,9 @@
       "source": "assets/videos/wave-ik.mp4",
       "sourceDuration": 3.68,
       "comparisonDuration": 3.6,
-      "playbackRate": 1.0222222222222221
+      "playbackRate": 1.0222222222222221,
+      "width": 400,
+      "height": 528
     },
     {
       "id": "wave-simulation",
@@ -32,7 +38,9 @@
       "source": "assets/videos/wave-simulation.mp4",
       "sourceDuration": 3.38,
       "comparisonDuration": 3.6,
-      "playbackRate": 0.9388888888888889
+      "playbackRate": 0.9388888888888889,
+      "width": 296,
+      "height": 528
     },
     {
       "id": "wave-hardware",
@@ -40,9 +48,97 @@
       "source": "assets/videos/wave-hardware.mp4",
       "sourceDuration": 3.470133,
       "comparisonDuration": 3.6,
-      "playbackRate": 0.9639258333333334
+      "playbackRate": 0.9639258333333334,
+      "width": 372,
+      "height": 528
     }
   ],
+  "layouts": {
+    "desktop": {
+      "width": 1892,
+      "height": 576,
+      "gap": 24,
+      "panels": [
+        {
+          "id": "amass-reference",
+          "x": 0,
+          "y": 0,
+          "width": 316,
+          "height": 528
+        },
+        {
+          "id": "amass-shaped",
+          "x": 340,
+          "y": 0,
+          "width": 412,
+          "height": 528
+        },
+        {
+          "id": "wave-ik",
+          "x": 776,
+          "y": 0,
+          "width": 400,
+          "height": 528
+        },
+        {
+          "id": "wave-simulation",
+          "x": 1200,
+          "y": 0,
+          "width": 296,
+          "height": 528
+        },
+        {
+          "id": "wave-hardware",
+          "x": 1520,
+          "y": 0,
+          "width": 372,
+          "height": 528
+        }
+      ]
+    },
+    "mobile": {
+      "width": 1176,
+      "height": 1128,
+      "gap": 24,
+      "panels": [
+        {
+          "id": "amass-reference",
+          "x": 0,
+          "y": 0,
+          "width": 316,
+          "height": 528
+        },
+        {
+          "id": "amass-shaped",
+          "x": 340,
+          "y": 0,
+          "width": 412,
+          "height": 528
+        },
+        {
+          "id": "wave-ik",
+          "x": 776,
+          "y": 0,
+          "width": 400,
+          "height": 528
+        },
+        {
+          "id": "wave-simulation",
+          "x": 242,
+          "y": 552,
+          "width": 296,
+          "height": 528
+        },
+        {
+          "id": "wave-hardware",
+          "x": 562,
+          "y": 552,
+          "width": 372,
+          "height": 528
+        }
+      ]
+    }
+  },
   "alignment": "All five recordings start together and are uniformly retimed to the same 3.6-second wave cycle. No frames are reordered; motion differences are retained.",
   "desktop": "assets/videos/wave-comparison-desktop.mp4",
   "mobile": "assets/videos/wave-comparison-mobile.mp4"

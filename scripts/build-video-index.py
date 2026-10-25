@@ -7,10 +7,10 @@ ROOT = Path(__file__).resolve().parents[1]
 items = json.loads((ROOT / 'media.json').read_text())
 stages = {stage['id'] for stage in json.loads((ROOT / 'wave-comparison.json').read_text())['stages']}
 comparison = '''<div class="comparison">
-<video controls loop muted playsinline preload="none" poster="assets/posters/wave-comparison-desktop.webp"
+<video controls loop muted playsinline preload="none" poster="assets/posters/wave-comparison-desktop.webp?v=2"
 aria-label="Synchronized wave: SMPL, reshaped SMPL, retargeted robot, simulation, and real robot">
-<source src="assets/videos/wave-comparison-mobile.mp4" media="(max-width:700px)" type="video/mp4">
-<source src="assets/videos/wave-comparison-desktop.mp4" type="video/mp4">
+<source src="assets/videos/wave-comparison-mobile.mp4?v=2" media="(max-width:700px)" type="video/mp4">
+<source src="assets/videos/wave-comparison-desktop.mp4?v=2" type="video/mp4">
 </video></div>'''
 sections = []
 for category in ['Motion tracking', 'Locomotion', 'Drawing', 'Gallery']:
@@ -40,12 +40,12 @@ for category in ['Motion tracking', 'Locomotion', 'Drawing', 'Gallery']:
     'section{margin-top:48px}h2{font-size:24px;font-weight:500;margin-bottom:20px}'
     'a{color:#294b43}video{display:block;width:100%;object-fit:contain;background:#e5e7df;'
     'aspect-ratio:4/3;border-radius:3px}.comparison{margin-bottom:24px}'
-    '.comparison video{aspect-ratio:10/3;background:#f6f5f0}'
+    '.comparison video{aspect-ratio:473/144;background:#f6f5f0}'
     '.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}'
     '.gallery{grid-template-columns:repeat(4,minmax(0,1fr))}.gallery figure{margin:0}'
     '.gallery img,.gallery video{width:100%;height:260px;object-fit:contain;background:#e5e7df}'
     '@media(max-width:1000px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}'
-    '@media(max-width:700px){.grid{grid-template-columns:1fr}.comparison video{aspect-ratio:24/23}}'
+    '@media(max-width:700px){.grid{grid-template-columns:1fr}.comparison video{aspect-ratio:49/47}}'
     '</style><body><a href="index.html">← Back to Swenoid</a><h1>Videos</h1>'
     + '\n'.join(sections) + '</body></html>\n'
 )

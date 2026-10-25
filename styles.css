@@ -9,7 +9,7 @@
 
 /* Players use the complete frame, with a single shared clock for the wave. */
 .wave-comparison{margin-bottom:32px;overflow:hidden;border-radius:4px;background:var(--paper)}
-#wave-player{display:block;width:100%;height:auto;aspect-ratio:10/3;background:var(--paper);object-fit:contain}
+#wave-player{display:block;width:100%;height:auto;aspect-ratio:473/144;background:var(--paper);object-fit:contain}
 .video-card video{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#e5e7df;border-radius:3px}
 .video-card h3{font-size:15px;font-weight:500;margin-top:12px}
 .photo-strip img{background:var(--soft)}
@@ -18,7 +18,7 @@
 .citation-code{padding:48px 23px 20px}
 .citation-code pre{font-size:12px}
 @media(max-width:700px){
-  #wave-player{aspect-ratio:24/23}
+  #wave-player{aspect-ratio:49/47}
   .video-grid{grid-template-columns:1fr;gap:28px}
   .photo-strip{grid-template-columns:1fr;gap:24px}
   .photo-strip img{height:auto;max-height:400px}

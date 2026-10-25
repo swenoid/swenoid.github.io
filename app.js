@@ -13,13 +13,13 @@ const narrowScreen = window.matchMedia('(max-width: 700px)');
 let layoutVersion = 0;
 function chooseWaveLayout() {
   const layout = narrowScreen.matches ? 'mobile' : 'desktop';
-  const source = `assets/videos/wave-comparison-${layout}.mp4`;
+  const source = `assets/videos/wave-comparison-${layout}.mp4?v=2`;
   if (wavePlayer.getAttribute('src') === source) return;
   const version = ++layoutVersion;
   const time = wavePlayer.currentTime || 0;
   const resume = !wavePlayer.paused && !wavePlayer.ended;
   wavePlayer.pause();
-  wavePlayer.poster = `assets/posters/wave-comparison-${layout}.webp`;
+  wavePlayer.poster = `assets/posters/wave-comparison-${layout}.webp?v=2`;
   wavePlayer.preload = time || resume ? 'metadata' : 'none';
   wavePlayer.src = source;
   if (time || resume) {
