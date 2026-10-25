@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f5f0">
   <title>Swenoid — An Open-Source and Customizable Humanoid Robot</title>
-  <meta name="description" content="Meet Swenoid: a 24-DOF, 68 cm humanoid robot from KTH. Explore its modular hardware, CAD-to-simulation workflow, research results, and video demonstrations.">
+  <meta name="description" content="Swenoid is an open-source humanoid robot developed at KTH, with 24 joints, 3D-printed parts, and a MuJoCo simulation model.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" type="module"></script>
+  <script src="model-viewer.js" type="module"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container nav-inner">
       <a href="#" class="wordmark" aria-label="Swenoid home"><svg viewBox="0 0 32 36" aria-hidden="true"><path d="M10 2h12v10H10zM5 16h22v12H5zM2 17v12m28-12v12M10 28v6m12-6v6"/><path d="M14 7h4"/></svg> swenoid<span class="wordmark-dot">.</span></a>
-      <nav aria-label="Main navigation"><a href="#research">Research</a><a href="#hardware">Hardware</a><a href="#videos">Videos</a><a href="#resources">Resources</a></nav>
+      <nav aria-label="Main navigation"><a href="#research">Overview</a><a href="#hardware">Hardware</a><a href="#videos">Videos</a><a href="#resources">Resources</a></nav>
       <a class="nav-github" href="https://github.com/swenoid">GitHub <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -23,20 +24,20 @@
   <main id="main">
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="small-square"></span> An open platform for humanoid research</p>
+
         <h1 id="hero-title">Swenoid<span>.</span></h1>
         <p class="hero-subtitle">An Open-Source and<br>Customizable Humanoid Robot</p>
-        <p class="hero-description">Built to be understood, modified, and put in motion. A modular humanoid connecting open hardware with learning-based control.</p>
-        <div class="hero-actions"><a class="button primary" href="#experiments">Explore the research <span aria-hidden="true">↓</span></a><a class="button text-button" href="#videos"><span class="play-small" aria-hidden="true">▶</span> Watch the robot</a></div>
+        <p class="hero-description">A 68 cm humanoid built from 3D-printed parts and Dynamixel actuators, with open CAD files and control software.</p>
+        <div class="hero-actions"><a class="button primary" href="#experiments">Experiments <span aria-hidden="true">↓</span></a><a class="button text-button" href="#videos"><span class="play-small" aria-hidden="true">▶</span> Videos</a></div>
         <div class="authors"><p>Martin Orrje <span>·</span> Arvid Eriksson <span>·</span> David Broman</p><p class="affiliation">KTH Royal Institute of Technology · Stockholm, Sweden</p></div>
       </div>
       <div class="hero-visual">
         <div class="robot-halo" aria-hidden="true"></div>
-        <span class="figure-label"><span class="status-dot"></span> Meet the platform</span>
+
         <img class="hero-robot" src="assets/images/swenoid.webp" alt="Swenoid humanoid robot with exposed modular joints, white printed structural parts, and a head-mounted computer" width="800" height="1582" fetchpriority="high">
         <div class="height-marker" aria-hidden="true"><span>680 mm</span></div>
-        <p class="figure-footnote">Designed for exploration.<br>Open to modification.</p>
-        <span class="figure-number" aria-hidden="true">01 / SWENOID</span>
+
+
       </div>
     </section>
 
@@ -48,63 +49,113 @@
       <div class="spec-text"><span class="open-symbol" aria-hidden="true">↗</span><p>Open hardware.<br>Open software.</p></div>
     </div>
 
+    <section id="simulation" class="section container simulation-section" aria-labelledby="simulation-title">
+      <div class="section-top">
+        <h2 id="simulation-title">Simulation model</h2>
+        <button id="reset-model-view" class="model-reset" type="button" disabled>Reset view</button>
+      </div>
+      <div class="model-frame">
+        <model-viewer id="simulation-viewer"
+          src="assets/models/swenoid.glb"
+          alt="Swenoid simulation model. Drag or use arrow keys to rotate; pinch or scroll to zoom."
+          camera-controls touch-action="pan-y" disable-pan
+          camera-orbit="25deg 75deg 110%" camera-target="auto auto auto" field-of-view="30deg"
+          min-camera-orbit="auto 5deg 30%" max-camera-orbit="auto 105deg 300%"
+          environment-image="neutral" tone-mapping="neutral" exposure="0.5" shadow-intensity="0.8" shadow-softness="1"
+          interaction-prompt="none" loading="lazy" reveal="auto">
+          <img slot="poster" class="model-poster" src="assets/images/simulation-model.webp" alt="Swenoid simulation model" loading="lazy">
+        </model-viewer>
+        <p id="model-error" class="model-error" role="status" hidden>Could not load the 3D view. <a href="assets/models/swenoid.glb" download>Download the model</a>.</p>
+      </div>
+      <noscript><p><a href="assets/models/swenoid.glb" download>Download the 3D model</a></p></noscript>
+    </section>
+
     <section id="research" class="section container research-section">
-      <div class="section-heading"><p class="eyebrow">01 / The research</p><h2>A small robot.<br>A platform for big questions.</h2></div>
-      <div class="research-body"><p class="lead">How do we make humanoid research easier to reproduce, extend, and share?</p><p>Swenoid combines off-the-shelf components with 3D-printed structural parts in a 24-degree-of-freedom humanoid. Threaded mounting points make room for new tools, sensors, and protective structures. A CAD-derived simulation model connects the physical design to reproducible experiments.</p><p>We study inverse-kinematics drawing, velocity-conditioned locomotion, and motion tracking. Policies trained in simulation transfer zero-shot to hardware, with an additional qualitative demonstration of real-time upper-body imitation from video.</p><details class="abstract"><summary>Read the abstract <span aria-hidden="true">+</span></summary><p>We present Swenoid, a 24-degree-of-freedom humanoid robot with off-the-shelf components and 3D-printed structural parts, designed as an open-source platform for research on locomotion and whole-body control. Swenoid emphasizes a modular mechanical design that uses threaded inserts to support rapid reconfiguration of end-effectors, sensors, and protective structures. We provide a simulation model that enables reproducible simulation studies. Swenoid is evaluated on three tasks: (i) an inverse-kinematics drawing task, (ii) velocity-conditioned locomotion controllers and (iii) motion tracking controllers trained on a human motion dataset retargeted to our robot. Policies transfer zero-shot to hardware, demonstrating velocity-conditioned walking and qualitatively evaluating real-time upper-body imitation from video. Together, these results position Swenoid as an open platform for studying sim-to-real transfer, imitation learning, and whole-body humanoid control.</p></details></div>
-      <div class="contributions"><article><span>01</span><h3>Modular humanoid hardware</h3><p>24 actuated joints, bearing-supported links, and accessible mounting points for new experiments.</p></article><article><span>02</span><h3>A connected software workflow</h3><p>From annotated CAD to an MJCF simulation model, policy training, and physical deployment.</p></article><article><span>03</span><h3>Experiments on real hardware</h3><p>Drawing, walking, and motion tracking connect simulation studies to physical behavior.</p></article></div>
+      <div class="section-heading"><h2>Overview</h2></div>
+      <div class="research-body">
+        <p>Swenoid is a 24-joint humanoid developed at KTH for locomotion and whole-body control. Its CAD files, simulation model, and control software are open source.</p>
+        <p>We train walking and motion-tracking policies in simulation and run them on the robot without further training. Hardware experiments include walking, drawing, dancing, and live upper-body imitation.</p>
+      </div>
     </section>
 
     <section id="hardware" class="hardware-section section">
       <div class="container">
-        <div class="section-top"><div><p class="eyebrow">02 / Physical design</p><h2>Made to be modified.</h2></div><a class="inline-link" href="https://github.com/swenoid/swenoid_cad">Explore the CAD <span aria-hidden="true">↗</span></a></div>
-        <div class="hardware-grid"><figure class="hardware-figure"><img src="assets/images/attachments.webp" alt="CAD views showing a pen attachment, chest-mounted sensor, and pelvis IMU attached to Swenoid through threaded mounting points" width="904" height="603" loading="lazy"><figcaption>Threaded inserts connect task-specific attachments directly to the robot’s structure.</figcaption></figure><div class="hardware-copy"><h3>Simple joints.<br>Room for your ideas.</h3><p>Off-the-shelf Dynamixel actuators directly drive each link through their geared outputs. External ball bearings support the joints without adding external transmissions.</p><p>Three neck joints enable expressive head movement, while the forearms accept printed tool mounts. A Raspberry Pi 5 and U2D2 sit on the head; a pelvis-mounted IMU supplies orientation measurements.</p><dl class="hardware-specs"><div><dt>Structure</dt><dd>3D-printed parts + threaded inserts</dd></div><div><dt>Actuators</dt><dd>15 × XM540-W270<br>9 × XM430-W350</dd></div><div><dt>Joint distribution</dt><dd>Legs 10 · Arms 8 · Torso 3 · Neck 3</dd></div></dl></div></div>
+        <div class="section-top"><div><h2>Hardware</h2></div><a class="inline-link" href="https://github.com/swenoid/swenoid_cad">CAD files <span aria-hidden="true">↗</span></a></div>
+        <div class="hardware-grid"><figure class="hardware-figure"><img src="assets/images/attachments-transparent.webp" alt="CAD views showing a pen attachment, chest-mounted sensor, and pelvis IMU attached to Swenoid through threaded mounting points" width="1535" height="1024" loading="lazy"></figure><div class="hardware-copy"><h3>Specifications</h3><dl class="hardware-specs"><div><dt>Structure</dt><dd>3D-printed parts + threaded inserts</dd></div><div><dt>Actuators</dt><dd>15 × XM540-W270<br>9 × XM430-W350</dd></div><div><dt>Joint distribution</dt><dd>Hips 3 each · Knees 1 each · Ankles 1 each<br>Shoulders 3 each · Elbows 1 each<br>Torso 3 · Neck 3</dd></div></dl></div></div>
       </div>
     </section>
 
     <section id="workflow" class="section container">
-      <div class="section-top"><div><p class="eyebrow">03 / From design to motion</p><h2>One continuous workflow.</h2></div><p class="section-aside">Design the robot. Build its simulation model.<br>Train in simulation. Run on hardware.</p></div>
-      <ol class="workflow"><li><span class="step-number">01</span><h3>CAD design</h3><p>Model the mechanical assembly and export STEP geometry.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">02</span><h3>Annotation</h3><p>Add joint axes and measured part masses with CADConversion.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">03</span><h3>Simulation</h3><p>Export an MJCF model for simulation in MuJoCo.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">04</span><h3>Policy training</h3><p>Train with PPO using mjlab and RSL-RL.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">05</span><h3>Deployment</h3><p>Transfer the trained policies zero-shot to the physical robot.</p></li></ol>
-      <div class="method-note"><p><strong>Learning to move.</strong> The paper uses 4,096 parallel environments, a 5 ms simulation step, and a 50 Hz control policy. Motion tracking adds reference joint positions and velocities to the robot’s proprioceptive observations.</p><a class="inline-link" href="https://github.com/swenoid/CADConversion">CADConversion <span aria-hidden="true">↗</span></a></div>
+      <div class="section-top"><div><h2>CAD to hardware</h2></div></div>
+      <ol class="workflow"><li><span class="step-number">01</span><h3>CAD design</h3><p>Mechanical assembly in STEP format.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">02</span><h3>Annotation</h3><p>Joint axes and measured part masses, added with CADConversion.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">03</span><h3>Simulation</h3><p>MuJoCo simulation model in MJCF format.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">04</span><h3>Policy training</h3><p>PPO training with mjlab and RSL-RL.</p><span class="step-arrow" aria-hidden="true">→</span></li><li><span class="step-number">05</span><h3>Deployment</h3><p>Policies run on the robot without further training.</p></li></ol>
+
     </section>
 
     <section id="experiments" class="experiments-section section">
-      <div class="container"><div class="section-top"><div><p class="eyebrow">04 / Experimental evaluation</p><h2>From learning to doing.</h2></div><p class="section-aside">Three evaluated tasks.<br>One qualitative live-imitation demonstration.</p></div>
+      <div class="container"><div class="section-top"><div><h2>Experiments</h2></div></div>
         <div class="experiment-tabs" role="tablist" aria-label="Experiments">
           <button id="tab-walking" role="tab" aria-selected="true" aria-controls="panel-walking" data-experiment="walking">Locomotion</button>
           <button id="tab-drawing" role="tab" aria-selected="false" aria-controls="panel-drawing" data-experiment="drawing" tabindex="-1">IK drawing</button>
           <button id="tab-tracking" role="tab" aria-selected="false" aria-controls="panel-tracking" data-experiment="tracking" tabindex="-1">Motion tracking</button>
           <button id="tab-imitation" role="tab" aria-selected="false" aria-controls="panel-imitation" data-experiment="imitation" tabindex="-1">Live imitation</button>
         </div>
-        <article id="panel-walking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-walking" tabindex="0"><button class="experiment-media" data-video="walking-front" aria-label="Play velocity-conditioned walking"><img src="assets/posters/walking-front.webp" alt="Swenoid walking on a lab floor" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span><span class="media-caption">Velocity-conditioned walking <span>Play film ↗</span></span></button><div class="experiment-copy"><p class="eyebrow">01 / Locomotion</p><h3>Walking out of simulation.</h3><p>A velocity-conditioned policy controls all 24 joints. Training includes forward, lateral, backward, and yaw commands; the reported hardware evaluation focuses on forward walking and forward–turning.</p><div class="result-pair"><div><strong>0.25 <small>m/s</small></strong><span>Forward command</span></div><div><strong>0.20 <small>m/s</small></strong><span>Forward + −0.20 rad/s yaw command</span></div></div><p class="result-note">These are commanded speeds, not measured hardware speeds. Mean hardware behavior resembles simulation, with relatively high variation between trials. Ground paths use an approximate video-derived proxy.</p></div></article>
-        <article id="panel-drawing" class="experiment-panel" role="tabpanel" aria-labelledby="tab-drawing" tabindex="0" hidden><button class="experiment-media" data-video="drawing" aria-label="Play inverse-kinematics drawing"><img src="assets/posters/drawing.webp" alt="Swenoid drawing on a whiteboard using its forearm-mounted pen" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span><span class="media-caption">Inverse-kinematics drawing <span>Play film ↗</span></span></button><div class="experiment-copy"><p class="eyebrow">02 / Inverse kinematics</p><h3>A repeatable mark.</h3><p>A printed pen attachment demonstrates the modular forearm interface. Across ten trials of an 80 mm target circle, the robot repeatedly draws a slightly elongated ellipse.</p><div class="result-pair"><div><strong>84.00 <small>mm</small></strong><span>Horizontal diameter · ±0.53 mm SD</span></div><div><strong>97.95 <small>mm</small></strong><span>Vertical diameter · ±0.50 mm SD</span></div></div><p class="result-note">Low variation indicates repeatability, while the consistent elongation suggests systematic error. The experiment does not isolate calibration, compliance, actuator tracking, or board alignment.</p></div></article>
-        <article id="panel-tracking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-tracking" tabindex="0" hidden><button class="experiment-media" data-video="dance" aria-label="Play twist-dance demonstration"><img src="assets/posters/dance.webp" alt="Swenoid performing a dance motion in the lab" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span><span class="media-caption">Single-motion tracking <span>Play film ↗</span></span></button><div class="experiment-copy"><p class="eyebrow">03 / Motion tracking</p><h3>Learning a reference motion.</h3><p>A single-motion policy follows a dance sequence using joint-position and joint-velocity references. General motion tracking extends this interface to a retargeted AMASS motion collection.</p><div class="result-pair"><div><strong>5 <small>/ 9</small></strong><span>Dance trials completed</span></div><div><strong>14.8 <small>s</small></strong><span>Reference sequence duration</span></div></div><p class="result-note">Four of the nine hardware attempts ended in falls. Tracking errors in the paper are reported only for the five complete trials. Foot contact, actuator modeling, and IMU noise remain possible sources of error.</p></div></article>
-        <article id="panel-imitation" class="experiment-panel" role="tabpanel" aria-labelledby="tab-imitation" tabindex="0" hidden><button class="experiment-media" data-video="live-imitation" aria-label="Play real-time upper-body imitation"><img src="assets/posters/live-imitation.webp" alt="A human operator and Swenoid demonstrating upper-body imitation" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span><span class="media-caption">Real-time upper-body imitation <span>Play film ↗</span></span></button><div class="experiment-copy"><p class="eyebrow">04 / Qualitative demonstration</p><h3>A human in the loop.</h3><p>A webcam captures a person’s motion. MediaPipe Pose estimates the human pose, GMR retargets the upper body, and a general motion-tracking policy controls the robot while the lower-body reference is held fixed.</p><div class="imitation-flow"><span>Webcam</span><b aria-hidden="true">→</b><span>Pose + retargeting</span><b aria-hidden="true">→</b><span>Policy</span></div><p class="result-note">The observed robot motions are slower and smaller than the human reference, with a stable lower-body posture. This demonstration is qualitative; the paper does not report a live-imitation accuracy or latency benchmark.</p></div></article>
-        <p class="experiment-source">Videos illustrate the project’s demonstrations. They are not presented as recordings of every trial in the paper.</p>
+        <article id="panel-walking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-walking" tabindex="0"><button class="experiment-media" data-video="walking-front" aria-label="Play velocity-conditioned walking"><img src="assets/posters/walking-front.webp" alt="Swenoid walking on a lab floor" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Velocity-conditioned walking</h3><p>The policy controls all 24 joints. Hardware tests use forward walking and combined forward–turning commands.</p><table class="command-ranges"><caption>Training command ranges</caption><thead><tr><th scope="col">Velocity command</th><th scope="col">Range</th></tr></thead><tbody><tr><th scope="row">Forward (x)</th><td>−0.20 to 0.35 m/s</td></tr><tr><th scope="row">Sideways (y)</th><td>−0.20 to 0.20 m/s</td></tr><tr class="yaw-range"><th scope="row">Yaw</th><td>−0.20 to 0.20 rad/s</td></tr></tbody></table></div></article>
+        <article id="panel-drawing" class="experiment-panel" role="tabpanel" aria-labelledby="tab-drawing" tabindex="0" hidden><button class="experiment-media" data-video="drawing" aria-label="Play inverse-kinematics drawing"><img src="assets/posters/drawing-ik.webp" alt="Swenoid drawing on a whiteboard using its forearm-mounted pen" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Inverse-kinematics drawing</h3><p>A pen mounted on the forearm follows an 80 mm circle using inverse kinematics. Ten trials produced ellipses with the dimensions below.</p><div class="result-pair"><div><strong>84.00 <small>mm</small></strong><span>Horizontal diameter · ±0.53 mm SD</span></div><div><strong>97.95 <small>mm</small></strong><span>Vertical diameter · ±0.50 mm SD</span></div></div></div></article>
+        <article id="panel-tracking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-tracking" tabindex="0" hidden><button class="experiment-media" data-video="dance" aria-label="Play twist-dance demonstration"><img src="assets/posters/dance.webp" alt="Swenoid performing a dance motion in the lab" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Dance tracking</h3><p>A policy follows a 14.8-second dance sequence using reference joint positions and velocities.</p><div class="result-pair"><div><strong>5 <small>/ 9</small></strong><span>Dance trials completed</span></div><div><strong>14.8 <small>s</small></strong><span>Reference sequence duration</span></div></div></div></article>
+        <article id="panel-imitation" class="experiment-panel" role="tabpanel" aria-labelledby="tab-imitation" tabindex="0" hidden><button class="experiment-media" data-video="live-imitation" aria-label="Play real-time upper-body imitation"><img src="assets/posters/live-imitation.webp" alt="A human operator and Swenoid demonstrating upper-body imitation" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Live imitation</h3><p>MediaPipe estimates a person’s pose from a webcam. GMR retargets the upper-body motion to Swenoid, and a tracking policy controls the robot. The lower-body reference stays fixed.</p></div></article>
       </div>
     </section>
 
     <section id="videos" class="section container video-section">
-      <div class="section-top"><div><p class="eyebrow">05 / Video collection</p><h2>See it in motion.</h2></div><p class="section-aside">Every video from the original project collection.<br>Hardware, simulation, and the steps in between.</p></div>
-      <div class="gallery-toolbar"><div id="filters" class="filters" role="group" aria-label="Filter videos"></div><p id="video-count" class="video-count" role="status" aria-live="polite"></p></div>
-      <div id="video-grid" class="video-grid" aria-label="Video gallery"></div>
-      <noscript><p>JavaScript enables the filterable video player. <a href="video-index.html">Open the complete video index</a> to watch all 14 videos directly.</p></noscript>
-      <p class="gallery-note">The collection includes earlier development footage. In particular, the Isaac Gym wave clip predates the paper’s mjlab training workflow.</p>
+      <div class="section-top"><h2>Videos</h2></div>
+      <section class="video-group" aria-labelledby="motion-tracking-title">
+        <h3 id="motion-tracking-title">Motion tracking</h3>
+      <div id="wave-comparison" class="wave-comparison" data-video-ids="amass-reference amass-shaped wave-ik wave-simulation wave-hardware">
+        <video id="wave-player" controls loop muted playsinline preload="none" poster="assets/posters/wave-comparison-desktop.webp" aria-label="Synchronized wave: SMPL, reshaped SMPL, retargeted robot, simulation, and real robot">
+          <source src="assets/videos/wave-comparison-mobile.mp4" media="(max-width: 700px)" type="video/mp4">
+          <source src="assets/videos/wave-comparison-desktop.mp4" type="video/mp4">
+          <a href="assets/videos/wave-comparison-desktop.mp4">Watch the wave comparison</a>
+        </video>
+      </div>
+        <div class="video-grid" data-video-group="Motion tracking"></div>
+      </section>
+      <section class="video-group" aria-labelledby="locomotion-title">
+        <h3 id="locomotion-title">Locomotion</h3>
+        <div class="video-grid" data-video-group="Locomotion"></div>
+      </section>
+      <section class="video-group" aria-labelledby="drawing-title">
+        <h3 id="drawing-title">Drawing</h3>
+        <div class="video-grid" data-video-group="Drawing"></div>
+      </section>
+      <noscript><p><a href="video-index.html">Watch the videos</a></p></noscript>
     </section>
 
-    <section class="photo-strip container" aria-label="More views of Swenoid"><figure><img src="assets/images/gesture.webp" alt="Swenoid posing with its arms extended" loading="lazy"><figcaption>Expressive upper-body motion</figcaption></figure><figure><img src="assets/images/sit.webp" alt="Swenoid in a seated pose" loading="lazy"><figcaption>A compact, articulated platform</figcaption></figure><figure><img src="assets/images/sidesplit.webp" alt="Swenoid demonstrating its hip range of motion" loading="lazy"><figcaption>Exploring the range of motion</figcaption></figure></section>
+    <section id="gallery" class="gallery-section container" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Gallery</h2>
+      <div class="photo-strip" data-video-group="Gallery">
+        <figure><img src="assets/images/gesture.webp" alt="Swenoid with its arms extended" loading="lazy"></figure>
+        <figure><img src="assets/images/sit.webp" alt="Swenoid sitting on a chair" loading="lazy"></figure>
+        <figure><img src="assets/images/sidesplit.webp" alt="Swenoid in a side split" loading="lazy"></figure>
+      </div>
+    </section>
 
-    <section id="resources" class="section resources-section container"><div class="section-top"><div><p class="eyebrow">06 / Open resources</p><h2>Build on Swenoid.</h2></div><p class="section-aside">Explore the design and control stack,<br>or contribute your next experiment.</p></div><div class="resource-list"><a href="https://github.com/swenoid/swenoid"><span class="resource-number">01</span><div><h3>Software & simulation</h3><p>MuJoCo models, policy training, retargeting tools, and deployment.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a><a href="https://github.com/swenoid/swenoid_cad"><span class="resource-number">02</span><div><h3>Hardware & CAD</h3><p>MIT-licensed STEP assembly. Print exports and assembly documentation are in progress.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a><a href="https://github.com/swenoid/CADConversion"><span class="resource-number">03</span><div><h3>CADConversion</h3><p>Annotate CAD geometry with joints and masses to build a simulation model.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a></div><p class="resource-note">The public software release documents its supported workflows. Live camera retargeting and the real-time imitation pipeline are not included in that release.</p>
-      <div class="citation"><div><p class="eyebrow">Cite this work</p><h3>Swenoid: An Open-Source and<br>Customizable Humanoid Robot</h3><p>Martin Orrje, Arvid Eriksson, and David Broman<br>Department of Computing and Learning Systems<br>KTH Royal Institute of Technology</p></div><div class="citation-code"><button id="copy-citation" type="button">Copy BibTeX <span aria-hidden="true">↗</span></button><pre id="bibtex">@misc{orrje_swenoid,
-  title = {Swenoid: An Open-Source and
-           Customizable Humanoid Robot},
-  author = {Orrje, Martin and Eriksson, Arvid
-            and Broman, David},
+    <section id="resources" class="section resources-section container"><div class="section-top"><div><h2>Code and CAD</h2></div></div><div class="resource-list"><a href="https://github.com/swenoid/swenoid"><span class="resource-number">01</span><div><h3>Software & simulation</h3><p>MuJoCo models, policy training, motion retargeting, and robot control.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a><a href="https://github.com/swenoid/swenoid_cad"><span class="resource-number">02</span><div><h3>Hardware & CAD</h3><p>MIT-licensed STEP assembly. Print exports and assembly documentation are in progress.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a><a href="https://github.com/swenoid/CADConversion"><span class="resource-number">03</span><div><h3>CADConversion</h3><p>STEP-to-MJCF conversion with joint and mass annotations.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a></div><p class="resource-note">Live camera retargeting and real-time imitation are not included in the current software release.</p>
+      <div id="citation" class="citation" aria-labelledby="citation-title">
+        <h3 id="citation-title">Citation</h3>
+        <div class="citation-code">
+          <button id="copy-citation" type="button">Copy BibTeX</button>
+          <pre id="bibtex">@misc{orrje_swenoid,
+  title = {Swenoid: An Open-Source and Customizable Humanoid Robot},
+  author = {Orrje, Martin and Eriksson, Arvid and Broman, David},
   note = {Manuscript}
-}</pre><span id="copy-status" role="status" aria-live="polite"></span></div></div>
+}</pre>
+          <span id="copy-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
     </section>
   </main>
-  <footer class="site-footer container"><a href="#" class="footer-wordmark">swenoid.</a><p>An open platform for humanoid robotics research.</p><a href="https://github.com/swenoid">Find us on GitHub ↗</a></footer>
+  <footer class="site-footer container"><a href="#" class="footer-wordmark">swenoid.</a><p>KTH Royal Institute of Technology</p><a href="https://github.com/swenoid">GitHub ↗</a></footer>
 
-  <dialog id="video-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><div><p id="dialog-setting" class="eyebrow"></p><h2 id="dialog-title"></h2></div><button id="close-dialog" aria-label="Close video">×</button></div><video id="dialog-player" controls playsinline preload="none"></video><div class="dialog-bottom"><p id="dialog-description"></p><a id="download-video" href="#" download>Download video ↓</a></div></dialog>
+  <dialog id="video-dialog" aria-label="Video player"><div class="dialog-header"><button id="close-dialog" aria-label="Close video">×</button></div><video id="dialog-player" controls playsinline preload="none"></video></dialog>
 </body>
 </html>

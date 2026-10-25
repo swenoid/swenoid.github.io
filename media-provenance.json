@@ -20,5 +20,20 @@
   ],
   "manuscript": "Author-supplied Swenoid: An Open-Source and Customizable Humanoid Robot",
   "portraitSource": "humanoid-paper.pdf, image xref 111 (existing project imagery)",
-  "sourceUnmodified": true
+  "sourceUnmodified": true,
+  "excludedVideos": [
+    "locomotion.mp4",
+    "walk.mov",
+    "wave.mov",
+    "draw_circle.mov"
+  ],
+  "exclusionReason": "Additional locomotion, walking development, and wave development footage omitted at the author\u2019s request. Original drawing clip replaced with IMG_4474.MOV.",
+  "additionalVideos": [
+    {
+      "original": "IMG_4474.MOV",
+      "replaces": "draw_circle.mov",
+      "source": "Author-supplied local recording",
+      "processing": "Full-length H.264/AAC conversion; HDR-to-SDR BT.709 perceptual tone mapping; original portrait orientation preserved."
+    }
+  ]
 }

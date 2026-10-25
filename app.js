@@ -1,26 +1,43 @@
-const grid = document.querySelector('#video-grid');
-const filters = document.querySelector('#filters');
-const count = document.querySelector('#video-count');
+const gallery = document.querySelector('#videos');
 const dialog = document.querySelector('#video-dialog');
 const player = document.querySelector('#dialog-player');
+const comparison = document.querySelector('#wave-comparison');
+const wavePlayer = document.querySelector('#wave-player');
+const waveIds = new Set(comparison.dataset.videoIds.split(' '));
 let media = [];
 let trigger = null;
 
-function duration(seconds) {
-  const rounded = Math.round(seconds);
-  return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, '0')}`;
+// All five stages are encoded into one video, so play, seek, pause and loop
+// always affect exactly the same frame in every stage.
+const narrowScreen = window.matchMedia('(max-width: 700px)');
+let layoutVersion = 0;
+function chooseWaveLayout() {
+  const layout = narrowScreen.matches ? 'mobile' : 'desktop';
+  const source = `assets/videos/wave-comparison-${layout}.mp4`;
+  if (wavePlayer.getAttribute('src') === source) return;
+  const version = ++layoutVersion;
+  const time = wavePlayer.currentTime || 0;
+  const resume = !wavePlayer.paused && !wavePlayer.ended;
+  wavePlayer.pause();
+  wavePlayer.poster = `assets/posters/wave-comparison-${layout}.webp`;
+  wavePlayer.preload = time || resume ? 'metadata' : 'none';
+  wavePlayer.src = source;
+  if (time || resume) {
+    wavePlayer.addEventListener('loadedmetadata', () => {
+      if (version !== layoutVersion) return;
+      wavePlayer.currentTime = Math.min(time, Math.max(0, wavePlayer.duration - 0.02));
+      if (resume) wavePlayer.play().catch(() => {});
+    }, { once: true });
+  }
+  if (time || resume) wavePlayer.load();
 }
-
+chooseWaveLayout();
+narrowScreen.addEventListener('change', chooseWaveLayout);
 function openVideo(id, opener) {
   const item = media.find(video => video.id === id);
   if (!item) return;
+  for (const video of document.querySelectorAll('.video-section video, #gallery video')) video.pause();
   trigger = opener;
-  document.querySelector('#dialog-title').textContent = item.title;
-  document.querySelector('#dialog-setting').textContent = `${item.category} / ${item.setting}`;
-  document.querySelector('#dialog-description').textContent = item.description;
-  const download = document.querySelector('#download-video');
-  download.href = item.src;
-  download.download = `swenoid-${item.id}.mp4`;
   player.poster = item.poster;
   player.src = item.src;
   player.setAttribute('aria-label', item.title);
@@ -44,73 +61,40 @@ dialog.addEventListener('close', () => {
 });
 document.addEventListener('click', event => {
   const button = event.target.closest('[data-video]');
-  if (button) openVideo(button.dataset.video, button);
-});
-
-function filterVideos(category) {
-  let visible = 0;
-  for (const card of grid.children) {
-    card.hidden = category !== 'All videos' && card.dataset.category !== category;
-    if (!card.hidden) visible++;
+  if (button && media.some(item => item.id === button.dataset.video)) {
+    event.preventDefault();
+    openVideo(button.dataset.video, button);
   }
-  for (const button of filters.children) button.setAttribute('aria-pressed', String(button.dataset.category === category));
-  count.textContent = `${visible} ${visible === 1 ? 'video' : 'videos'}`;
-}
+});
 
 try {
   const response = await fetch('media.json');
   if (!response.ok) throw new Error('Media index is unavailable.');
   media = await response.json();
-  for (const category of ['All videos', 'Locomotion', 'Motion tracking', 'Imitation', 'Manipulation', 'Retargeting']) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.dataset.category = category;
-    button.textContent = category;
-    button.addEventListener('click', () => filterVideos(category));
-    filters.append(button);
-  }
   for (const item of media) {
+    if (waveIds.has(item.id)) continue;
     const card = document.createElement('article');
     card.className = 'video-card';
-    card.dataset.category = item.category;
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.dataset.video = item.id;
-    button.setAttribute('aria-label', `Play ${item.title}, ${duration(item.duration)}`);
-    const thumb = document.createElement('span');
-    thumb.className = 'video-thumb';
-    const image = document.createElement('img');
-    image.src = item.poster;
-    image.alt = '';
-    image.loading = 'lazy';
-    image.width = item.width;
-    image.height = item.height;
-    const play = document.createElement('span');
-    play.className = 'thumb-play';
-    play.textContent = '▶';
-    play.setAttribute('aria-hidden', 'true');
-    const time = document.createElement('span');
-    time.className = 'duration';
-    time.textContent = duration(item.duration);
-    const category = document.createElement('span');
-    category.className = 'video-category';
-    category.textContent = `${item.category} / ${item.setting}`;
-    const title = document.createElement('h3');
-    title.textContent = item.title;
-    thumb.append(image, play, time);
-    button.append(thumb, category, title);
-    card.append(button);
-    grid.append(card);
+    const video = document.createElement('video');
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = 'none';
+    video.src = item.src;
+    video.poster = item.poster;
+    video.dataset.videoId = item.id;
+    video.setAttribute('aria-label', item.title);
+    card.append(video);
+    const row = document.querySelector(`[data-video-group="${item.category}"]`);
+    row.append(card);
   }
-  filterVideos('All videos');
 } catch (error) {
   const message = document.createElement('p');
   message.textContent = 'The gallery could not load. ';
   const fallback = document.createElement('a');
   fallback.href = 'video-index.html';
-  fallback.textContent = 'Watch videos in the complete index.';
+  fallback.textContent = 'Watch the videos.';
   message.append(fallback);
-  grid.append(message);
+  gallery.append(message);
   console.error(error);
 }
 
@@ -138,18 +122,20 @@ tabs.forEach((tab, index) => {
   });
 });
 
-document.querySelector('#copy-citation').addEventListener('click', async () => {
-  const text = document.querySelector('#bibtex').textContent;
-  const status = document.querySelector('#copy-status');
+
+const citation = document.querySelector('#bibtex');
+const copyButton = document.querySelector('#copy-citation');
+const copyStatus = document.querySelector('#copy-status');
+copyButton.addEventListener('click', async () => {
   try {
-    await navigator.clipboard.writeText(text);
-    status.textContent = 'Citation copied.';
+    await navigator.clipboard.writeText(citation.textContent.trim());
+    copyStatus.textContent = 'Copied to clipboard.';
   } catch {
     const selection = window.getSelection();
     const range = document.createRange();
-    range.selectNodeContents(document.querySelector('#bibtex'));
+    range.selectNodeContents(citation);
     selection.removeAllRanges();
     selection.addRange(range);
-    status.textContent = 'Citation selected. Use your device’s copy command.';
+    copyStatus.textContent = 'Text selected. Press ⌘C or Ctrl+C to copy.';
   }
 });

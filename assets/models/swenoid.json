@@ -1,0 +1,36 @@
+{
+  "sourceRepository": "https://github.com/swenoid/swenoid",
+  "sourceCommit": "9c43dbd96c60984d4fa6a6b79adb24b0dd7f0954",
+  "sourceModel": "src/swenoid/assets/swenoid/xmls/swenoid.xml",
+  "format": "glTF binary 2.0",
+  "units": "metres",
+  "upAxis": "+Y",
+  "poseRadians": {
+    "left_elbow_joint": 1.22,
+    "right_elbow_joint": 1.22,
+    "left_shoulder_roll_joint": 0.2617993877991494,
+    "right_shoulder_roll_joint": -0.2617993877991494,
+    "left_shoulder_pitch_joint": -0.04,
+    "right_shoulder_pitch_joint": -0.04
+  },
+  "visualRepair": "Left shoulder rotation XM430-W350 visual replaced from the intact right shoulder rotation motor in the same source model.",
+  "materialScheme": "Photograph-matched off-white plastic, dark actuators, metallic bearings and fasteners",
+  "visualMeshes": 91,
+  "triangles": 415261,
+  "boundsMetres": [
+    [
+      -0.17057808295039117,
+      0.0,
+      -0.08195000136395417
+    ],
+    [
+      0.17057808295039117,
+      0.6977950373039302,
+      0.08195000136395417
+    ]
+  ],
+  "actuatedJointsInSource": 24,
+  "simulationIncluded": false,
+  "sha256": "b15664fcf12cfa5330070dd77fc06c8551662b4add49df349974c193987862f9",
+  "bytes": 12490716
+}

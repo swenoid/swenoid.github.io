@@ -1,0 +1,49 @@
+{
+  "duration": 3.6,
+  "fps": 50,
+  "stages": [
+    {
+      "id": "amass-reference",
+      "title": "SMPL",
+      "source": "assets/videos/amass-reference.mp4",
+      "sourceDuration": 3.62,
+      "comparisonDuration": 3.6,
+      "playbackRate": 1.0055555555555555
+    },
+    {
+      "id": "amass-shaped",
+      "title": "Reshaped SMPL",
+      "source": "assets/videos/amass-shaped.mp4",
+      "sourceDuration": 3.77,
+      "comparisonDuration": 3.6,
+      "playbackRate": 1.0472222222222223
+    },
+    {
+      "id": "wave-ik",
+      "title": "Retargeted robot",
+      "source": "assets/videos/wave-ik.mp4",
+      "sourceDuration": 3.68,
+      "comparisonDuration": 3.6,
+      "playbackRate": 1.0222222222222221
+    },
+    {
+      "id": "wave-simulation",
+      "title": "Simulation",
+      "source": "assets/videos/wave-simulation.mp4",
+      "sourceDuration": 3.38,
+      "comparisonDuration": 3.6,
+      "playbackRate": 0.9388888888888889
+    },
+    {
+      "id": "wave-hardware",
+      "title": "Real robot",
+      "source": "assets/videos/wave-hardware.mp4",
+      "sourceDuration": 3.470133,
+      "comparisonDuration": 3.6,
+      "playbackRate": 0.9639258333333334
+    }
+  ],
+  "alignment": "All five recordings start together and are uniformly retimed to the same 3.6-second wave cycle. No frames are reordered; motion differences are retained.",
+  "desktop": "assets/videos/wave-comparison-desktop.mp4",
+  "mobile": "assets/videos/wave-comparison-mobile.mp4"
+}

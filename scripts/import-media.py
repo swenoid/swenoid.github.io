@@ -23,6 +23,9 @@ def run(args):
 
 
 def convert(item):
+    if item.get('sourceType') == 'author-supplied':
+        print('Preserved author-supplied ' + item['original'], flush=True)
+        return item
     source = SOURCE / 'content' / item['original']
     output = ROOT / 'assets/videos' / (item['id'] + '.mp4')
     poster = ROOT / 'assets/posters' / (item['id'] + '.webp')

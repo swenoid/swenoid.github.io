@@ -6,6 +6,6 @@
   "description": "Research website for the Swenoid humanoid robot",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "check": "node --check app.js && node --check scripts/serve.mjs && python3 scripts/check-site.py"
+    "check": "node --check app.js && node --check model-viewer.js && node --check scripts/serve.mjs && python3 scripts/check-site.py"
   }
 }
