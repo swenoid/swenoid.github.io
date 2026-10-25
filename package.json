@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Research website for the Swenoid humanoid robot",
+  "description": "Research website for the SWENOID humanoid robot",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "check": "node --check app.js && node --check model-viewer.js && node --check scripts/serve.mjs && python3 scripts/check-site.py"

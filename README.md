@@ -1,4 +1,4 @@
-# Swenoid website
+# SWENOID website
 
 Static project website for `https://swenoid.github.io/` and the
 `swenoid/swenoid.github.io` repository. The 3D viewer bundle is included locally; there is no tracking,
@@ -19,7 +19,7 @@ The site introduces the hardware, simulation workflow, and demonstrations
 directly. The video section shows five individual demonstrations and one
 five-stage wave comparison. A separate Gallery groups the push-up video with
 three photographs. The comparison contains SMPL, reshaped SMPL,
-kinematically retargeted Swenoid, a policy in Isaac Gym, and hardware.
+kinematically retargeted SWENOID, a policy in Isaac Gym, and hardware.
 
 The five wave recordings are encoded into one video with one playback clock.
 Play, pause, seek, and loop therefore keep all stages together. Each source

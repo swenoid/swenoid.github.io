@@ -1,7 +1,7 @@
 """Export the prepared MuJoCo visual model as a static, colored GLB.
 
 Requires mujoco, numpy and trimesh. Inputs are the prepared scene XML and its
-render-provenance JSON from the Swenoid figure project. Collision geometry,
+render-provenance JSON from the SWENOID figure project. Collision geometry,
 dynamics, and the original simulation files are not changed.
 """
 import argparse

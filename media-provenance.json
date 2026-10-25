@@ -18,7 +18,7 @@
     "wave_mujoco.mov",
     "wave_real.mov"
   ],
-  "manuscript": "Author-supplied Swenoid: An Open-Source and Customizable Humanoid Robot",
+  "manuscript": "Author-supplied SWENOID: An Open-Source and Customizable Humanoid Robot",
   "portraitSource": "humanoid-paper.pdf, image xref 111 (existing project imagery)",
   "sourceUnmodified": true,
   "excludedVideos": [

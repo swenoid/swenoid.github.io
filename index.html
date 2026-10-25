@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f5f0">
-  <title>Swenoid — An Open-Source and Customizable Humanoid Robot</title>
-  <meta name="description" content="Swenoid is an open-source humanoid robot developed at KTH, with 24 joints, 3D-printed parts, and a MuJoCo simulation model.">
+  <title>SWENOID — An Open-Source and Customizable Humanoid Robot</title>
+  <meta name="description" content="SWENOID is an open-source humanoid robot developed at KTH, with 24 joints, 3D-printed parts, and a MuJoCo simulation model.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" type="module"></script>
@@ -15,7 +15,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container nav-inner">
-      <a href="#" class="wordmark" aria-label="Swenoid home"><svg viewBox="0 0 32 36" aria-hidden="true"><path d="M10 2h12v10H10zM5 16h22v12H5zM2 17v12m28-12v12M10 28v6m12-6v6"/><path d="M14 7h4"/></svg> swenoid<span class="wordmark-dot">.</span></a>
+      <a href="#" class="wordmark" aria-label="SWENOID home"><svg viewBox="0 0 32 36" aria-hidden="true"><path d="M10 2h12v10H10zM5 16h22v12H5zM2 17v12m28-12v12M10 28v6m12-6v6"/><path d="M14 7h4"/></svg> SWENOID<span class="wordmark-dot">.</span></a>
       <nav aria-label="Main navigation"><a href="#research">Overview</a><a href="#hardware">Hardware</a><a href="#videos">Videos</a><a href="#resources">Resources</a></nav>
       <a class="nav-github" href="https://github.com/swenoid">GitHub <span aria-hidden="true">↗</span></a>
     </div>
@@ -25,7 +25,7 @@
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-copy">
 
-        <h1 id="hero-title">Swenoid<span>.</span></h1>
+        <h1 id="hero-title">SWENOID<span>.</span></h1>
         <p class="hero-subtitle">An Open-Source and<br>Customizable Humanoid Robot</p>
         <p class="hero-description">A 68 cm humanoid built from 3D-printed parts and Dynamixel actuators, with open CAD files and control software.</p>
         <div class="hero-actions"><a class="button primary" href="#experiments">Experiments <span aria-hidden="true">↓</span></a><a class="button text-button" href="#videos"><span class="play-small" aria-hidden="true">▶</span> Videos</a></div>
@@ -34,7 +34,7 @@
       <div class="hero-visual">
         <div class="robot-halo" aria-hidden="true"></div>
 
-        <img class="hero-robot" src="assets/images/swenoid.webp" alt="Swenoid humanoid robot with exposed modular joints, white printed structural parts, and a head-mounted computer" width="800" height="1582" fetchpriority="high">
+        <img class="hero-robot" src="assets/images/swenoid.webp" alt="SWENOID humanoid robot with exposed modular joints, white printed structural parts, and a head-mounted computer" width="800" height="1582" fetchpriority="high">
         <div class="height-marker" aria-hidden="true"><span>680 mm</span></div>
 
 
@@ -56,13 +56,13 @@
       <div class="model-frame">
         <model-viewer id="simulation-viewer"
           src="assets/models/swenoid.glb"
-          alt="Swenoid simulation model. Drag or use arrow keys to rotate; pinch or scroll to zoom."
+          alt="SWENOID simulation model. Drag or use arrow keys to rotate; pinch or scroll to zoom."
           camera-controls touch-action="pan-y" disable-pan
           camera-orbit="25deg 75deg 110%" camera-target="auto auto auto" field-of-view="30deg"
           min-camera-orbit="auto 5deg 30%" max-camera-orbit="auto 105deg 300%"
           environment-image="neutral" tone-mapping="neutral" exposure="0.5" shadow-intensity="0.8" shadow-softness="1"
           interaction-prompt="none" loading="lazy" reveal="auto">
-          <img slot="poster" class="model-poster" src="assets/images/simulation-model.webp" alt="Swenoid simulation model" loading="lazy">
+          <img slot="poster" class="model-poster" src="assets/images/simulation-model.webp" alt="SWENOID simulation model" loading="lazy">
         </model-viewer>
         <p id="model-error" class="model-error" role="status" hidden>Could not load the 3D view. <a href="assets/models/swenoid.glb" download>Download the model</a>.</p>
       </div>
@@ -72,7 +72,7 @@
     <section id="research" class="section container research-section">
       <div class="section-heading"><h2>Overview</h2></div>
       <div class="research-body">
-        <p>Swenoid is a 24-joint humanoid developed at KTH for locomotion and whole-body control. Its CAD files, simulation model, and control software are open source.</p>
+        <p>SWENOID is a 24-joint humanoid developed at KTH for locomotion and whole-body control. Its CAD files, simulation model, and control software are open source.</p>
         <p>We train walking and motion-tracking policies in simulation and run them on the robot without further training. Hardware experiments include walking, drawing, dancing, and live upper-body imitation.</p>
       </div>
     </section>
@@ -80,7 +80,7 @@
     <section id="hardware" class="hardware-section section">
       <div class="container">
         <div class="section-top"><div><h2>Hardware</h2></div><a class="inline-link" href="https://github.com/swenoid/swenoid_cad">CAD files <span aria-hidden="true">↗</span></a></div>
-        <div class="hardware-grid"><figure class="hardware-figure"><img src="assets/images/attachments-transparent.webp" alt="CAD views showing a pen attachment, chest-mounted sensor, and pelvis IMU attached to Swenoid through threaded mounting points" width="1535" height="1024" loading="lazy"></figure><div class="hardware-copy"><h3>Specifications</h3><dl class="hardware-specs"><div><dt>Structure</dt><dd>3D-printed parts + threaded inserts</dd></div><div><dt>Actuators</dt><dd>15 × XM540-W270<br>9 × XM430-W350</dd></div><div><dt>Joint distribution</dt><dd>Hips 3 each · Knees 1 each · Ankles 1 each<br>Shoulders 3 each · Elbows 1 each<br>Torso 3 · Neck 3</dd></div></dl></div></div>
+        <div class="hardware-grid"><figure class="hardware-figure"><img src="assets/images/attachments-transparent.webp" alt="CAD views showing a pen attachment, chest-mounted sensor, and pelvis IMU attached to SWENOID through threaded mounting points" width="1535" height="1024" loading="lazy"></figure><div class="hardware-copy"><h3>Specifications</h3><dl class="hardware-specs"><div><dt>Structure</dt><dd>3D-printed parts + threaded inserts</dd></div><div><dt>Actuators</dt><dd>15 × XM540-W270<br>9 × XM430-W350</dd></div><div><dt>Joint distribution</dt><dd>Hips 3 each · Knees 1 each · Ankles 1 each<br>Shoulders 3 each · Elbows 1 each<br>Torso 3 · Neck 3</dd></div></dl></div></div>
       </div>
     </section>
 
@@ -98,10 +98,10 @@
           <button id="tab-tracking" role="tab" aria-selected="false" aria-controls="panel-tracking" data-experiment="tracking" tabindex="-1">Motion tracking</button>
           <button id="tab-imitation" role="tab" aria-selected="false" aria-controls="panel-imitation" data-experiment="imitation" tabindex="-1">Live imitation</button>
         </div>
-        <article id="panel-walking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-walking" tabindex="0"><button class="experiment-media" data-video="walking-front" aria-label="Play velocity-conditioned walking"><img src="assets/posters/walking-front.webp" alt="Swenoid walking on a lab floor" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Velocity-conditioned walking</h3><p>The policy controls all 24 joints. Hardware tests use forward walking and combined forward–turning commands.</p><table class="command-ranges"><caption>Training command ranges</caption><thead><tr><th scope="col">Velocity command</th><th scope="col">Range</th></tr></thead><tbody><tr><th scope="row">Forward (x)</th><td>−0.20 to 0.35 m/s</td></tr><tr><th scope="row">Sideways (y)</th><td>−0.20 to 0.20 m/s</td></tr><tr class="yaw-range"><th scope="row">Yaw</th><td>−0.20 to 0.20 rad/s</td></tr></tbody></table></div></article>
-        <article id="panel-drawing" class="experiment-panel" role="tabpanel" aria-labelledby="tab-drawing" tabindex="0" hidden><button class="experiment-media" data-video="drawing" aria-label="Play inverse-kinematics drawing"><img src="assets/posters/drawing-ik.webp" alt="Swenoid drawing on a whiteboard using its forearm-mounted pen" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Inverse-kinematics drawing</h3><p>A pen mounted on the forearm follows an 80 mm circle using inverse kinematics. Ten trials produced ellipses with the dimensions below.</p><div class="result-pair"><div><strong>84.00 <small>mm</small></strong><span>Horizontal diameter · ±0.53 mm SD</span></div><div><strong>97.95 <small>mm</small></strong><span>Vertical diameter · ±0.50 mm SD</span></div></div></div></article>
-        <article id="panel-tracking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-tracking" tabindex="0" hidden><button class="experiment-media" data-video="dance" aria-label="Play twist-dance demonstration"><img src="assets/posters/dance.webp" alt="Swenoid performing a dance motion in the lab" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Dance tracking</h3><p>A policy follows a 14.8-second dance sequence using reference joint positions and velocities.</p><div class="result-pair"><div><strong>5 <small>/ 9</small></strong><span>Dance trials completed</span></div><div><strong>14.8 <small>s</small></strong><span>Reference sequence duration</span></div></div></div></article>
-        <article id="panel-imitation" class="experiment-panel" role="tabpanel" aria-labelledby="tab-imitation" tabindex="0" hidden><button class="experiment-media" data-video="live-imitation" aria-label="Play real-time upper-body imitation"><img src="assets/posters/live-imitation.webp" alt="A human operator and Swenoid demonstrating upper-body imitation" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Live imitation</h3><p>MediaPipe estimates a person’s pose from a webcam. GMR retargets the upper-body motion to Swenoid, and a tracking policy controls the robot. The lower-body reference stays fixed.</p></div></article>
+        <article id="panel-walking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-walking" tabindex="0"><button class="experiment-media" data-video="walking-front" aria-label="Play velocity-conditioned walking"><img src="assets/posters/walking-front.webp" alt="SWENOID walking on a lab floor" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Velocity-conditioned walking</h3><p>The policy controls all 24 joints. Hardware tests use forward walking and combined forward–turning commands.</p><table class="command-ranges"><caption>Training command ranges</caption><thead><tr><th scope="col">Velocity command</th><th scope="col">Range</th></tr></thead><tbody><tr><th scope="row">Forward (x)</th><td>−0.20 to 0.35 m/s</td></tr><tr><th scope="row">Sideways (y)</th><td>−0.20 to 0.20 m/s</td></tr><tr class="yaw-range"><th scope="row">Yaw</th><td>−0.20 to 0.20 rad/s</td></tr></tbody></table></div></article>
+        <article id="panel-drawing" class="experiment-panel" role="tabpanel" aria-labelledby="tab-drawing" tabindex="0" hidden><button class="experiment-media" data-video="drawing" aria-label="Play inverse-kinematics drawing"><img src="assets/posters/drawing-ik.webp" alt="SWENOID drawing on a whiteboard using its forearm-mounted pen" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Inverse-kinematics drawing</h3><p>A pen mounted on the forearm follows an 80 mm circle using inverse kinematics. Ten trials produced ellipses with the dimensions below.</p><div class="result-pair"><div><strong>84.00 <small>mm</small></strong><span>Horizontal diameter · ±0.53 mm SD</span></div><div><strong>97.95 <small>mm</small></strong><span>Vertical diameter · ±0.50 mm SD</span></div></div></div></article>
+        <article id="panel-tracking" class="experiment-panel" role="tabpanel" aria-labelledby="tab-tracking" tabindex="0" hidden><button class="experiment-media" data-video="dance" aria-label="Play twist-dance demonstration"><img src="assets/posters/dance.webp" alt="SWENOID performing a dance motion in the lab" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Dance tracking</h3><p>A policy follows a 14.8-second dance sequence using reference joint positions and velocities.</p><div class="result-pair"><div><strong>5 <small>/ 9</small></strong><span>Dance trials completed</span></div><div><strong>14.8 <small>s</small></strong><span>Reference sequence duration</span></div></div></div></article>
+        <article id="panel-imitation" class="experiment-panel" role="tabpanel" aria-labelledby="tab-imitation" tabindex="0" hidden><button class="experiment-media" data-video="live-imitation" aria-label="Play real-time upper-body imitation"><img src="assets/posters/live-imitation.webp" alt="A human operator and SWENOID demonstrating upper-body imitation" loading="lazy"><span class="play-circle" aria-hidden="true">▶</span></button><div class="experiment-copy"><h3>Live imitation</h3><p>MediaPipe estimates a person’s pose from a webcam. GMR retargets the upper-body motion to SWENOID, and a tracking policy controls the robot. The lower-body reference stays fixed.</p></div></article>
       </div>
     </section>
 
@@ -132,9 +132,9 @@
     <section id="gallery" class="gallery-section container" aria-labelledby="gallery-title">
       <h2 id="gallery-title">Gallery</h2>
       <div class="photo-strip" data-video-group="Gallery">
-        <figure><img src="assets/images/gesture.webp" alt="Swenoid with its arms extended" loading="lazy"></figure>
-        <figure><img src="assets/images/sit.webp" alt="Swenoid sitting on a chair" loading="lazy"></figure>
-        <figure><img src="assets/images/sidesplit.webp" alt="Swenoid in a side split" loading="lazy"></figure>
+        <figure><img src="assets/images/gesture.webp" alt="SWENOID with its arms extended" loading="lazy"></figure>
+        <figure><img src="assets/images/sit.webp" alt="SWENOID sitting on a chair" loading="lazy"></figure>
+        <figure><img src="assets/images/sidesplit.webp" alt="SWENOID in a side split" loading="lazy"></figure>
       </div>
     </section>
 
@@ -144,7 +144,7 @@
         <div class="citation-code">
           <button id="copy-citation" type="button">Copy BibTeX</button>
           <pre id="bibtex">@misc{orrje_swenoid,
-  title = {Swenoid: An Open-Source and Customizable Humanoid Robot},
+  title = {{SWENOID}: An Open-Source and Customizable Humanoid Robot},
   author = {Orrje, Martin and Eriksson, Arvid and Broman, David},
   note = {Manuscript}
 }</pre>
@@ -153,7 +153,7 @@
       </div>
     </section>
   </main>
-  <footer class="site-footer container"><a href="#" class="footer-wordmark">swenoid.</a><p>KTH Royal Institute of Technology</p><a href="https://github.com/swenoid">GitHub ↗</a></footer>
+  <footer class="site-footer container"><a href="#" class="footer-wordmark">SWENOID.</a><p>KTH Royal Institute of Technology</p><a href="https://github.com/swenoid">GitHub ↗</a></footer>
 
   <dialog id="video-dialog" aria-label="Video player"><div class="dialog-header"><button id="close-dialog" aria-label="Close video">×</button></div><video id="dialog-player" controls playsinline preload="none"></video></dialog>
 </body>
